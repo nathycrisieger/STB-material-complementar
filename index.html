@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STOP THE BLEED — Material Complementar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee&family=Special+Elite&family=Inter+Tight:wght@400;500;700&family=Caveat:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0d0d0d;   /* fundo: preto fosco */
+    --ink:#e9e7e4;     /* texto: branco osso */
+    --bone:#f4f2ef;    /* texto sobre cor */
+    --pink:#c1121f;    /* vermelho sangue */
+    --blue:#8a8d90;    /* cinza aço */
+    --green:#7a0c12;   /* sangue seco */
+    --steel:#2a2b2d;   /* cinza grafite */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--paper);
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence baseFrequency='.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .07 0'/></filter><rect width='240' height='240' filter='url(%23g)'/></svg>");
+    color:var(--ink);font-family:'Inter Tight',sans-serif;
+    -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.55;
+  }
+  body{padding:0 0 64px}
+  a{color:inherit}
+
+  .page{max-width:880px;margin:0 auto;padding:24px;position:relative}
+
+  /* nav */
+  .nav{
+    border-bottom:2px dashed var(--ink);
+    padding-bottom:12px;margin-bottom:24px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+  }
+  .nav a{text-decoration:none}
+  .nav .x{
+    display:inline-block;background:var(--pink);color:var(--bone);padding:2px 8px;font-weight:500;
+    transform:rotate(-2deg);
+  }
+
+  /* cover */
+  .cover{
+    padding:24px 0 48px;text-align:center;border-bottom:6px solid var(--ink);
+    position:relative;
+  }
+  .cover::before{
+    content:'';position:absolute;inset:8px;border:3px dashed var(--ink);pointer-events:none;
+  }
+  .cover .stamp{
+    display:inline-block;font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.05em;
+    border:3px solid var(--blue);color:var(--blue);padding:6px 18px;
+    transform:rotate(-4deg);margin-bottom:24px;
+  }
+  .cover h1{
+    font-family:'Black Ops One',sans-serif;font-weight:400;
+    font-size:clamp(60px,12vw,156px);line-height:.95;letter-spacing:.01em;
+    text-transform:uppercase;
+    position:relative;
+    color:var(--ink);
+  }
+  /* riso misregistration trick: overlay duplicated colored copies */
+  .cover h1 .l{display:block;position:relative}
+  .cover h1 .l::before,
+  .cover h1 .l::after{
+    content:attr(data-t);
+    position:absolute;left:0;top:0;width:100%;
+    pointer-events:none;mix-blend-mode:screen;
+  }
+  .cover h1 .l::before{color:var(--pink);transform:translate(-6px,4px);opacity:.85}
+  .cover h1 .l::after{color:var(--blue);transform:translate(5px,-3px);opacity:.85}
+
+  .cover .num{
+    margin-top:14px;
+    font-family:'Black Ops One',sans-serif;color:var(--pink);font-size:64px;line-height:1;text-transform:uppercase;letter-spacing:.05em;
+    transform:rotate(2deg);display:inline-block;
+  }
+  .cover .deck{
+    margin:24px auto 0;max-width:30ch;font-family:'Special Elite',monospace;font-size:15px;line-height:1.4;
+  }
+  .cover .deck b{background:var(--pink);color:var(--bone);padding:0 4px}
+
+  .cover .price{
+    margin-top:32px;font-family:'Black Ops One',sans-serif;font-size:24px;color:var(--pink);
+    border:3px solid var(--pink);padding:6px 18px;display:inline-block;transform:rotate(-1.5deg);
+  }
+
+  /* table of nothing */
+  .toc{
+    margin:48px 0;padding:24px;border:3px solid var(--ink);
+    background:var(--paper);position:relative;
+    transform:rotate(-.5deg);
+  }
+  .toc h3{
+    font-family:'Black Ops One',sans-serif;font-size:24px;letter-spacing:.04em;text-transform:uppercase;
+    margin-bottom:14px;color:var(--blue);
+  }
+  .toc ol{list-style:none;padding:0;font-family:'Special Elite',monospace;font-size:16px;line-height:1.7}
+  .toc ol li{
+    display:flex;justify-content:space-between;border-bottom:1.5px dotted var(--ink);padding:6px 0;
+  }
+  .toc ol li b{font-weight:400;color:var(--pink)}
+
+  /* article */
+  .art{margin:48px 0;display:grid;grid-template-columns:1fr 200px;gap:32px}
+  @media (max-width:600px){.art{grid-template-columns:1fr}}
+  .art h2{
+    font-family:'Black Ops One',sans-serif;font-size:36px;letter-spacing:.02em;text-transform:uppercase;line-height:.98;margin-bottom:16px;color:var(--ink);
+  }
+  .art h2 .b{color:var(--blue)}
+  .art h2 .p{color:var(--pink)}
+  .art h2 .u{background:var(--green);color:var(--bone);padding:0 .15em}
+  .art p{font-family:'Special Elite',monospace;font-size:15px;line-height:1.7;margin-bottom:.8em}
+  .art p strong{background:var(--pink);color:var(--bone);padding:1px 4px;font-weight:400}
+  .art p em{font-style:italic;color:var(--blue)}
+
+  .art aside{padding:14px;border:3px solid var(--pink);background:rgba(193,18,31,.10);transform:rotate(1.5deg)}
+  .art aside h4{font-family:'Black Ops One',sans-serif;font-size:14px;color:var(--pink);text-transform:uppercase;margin-bottom:6px;letter-spacing:.05em}
+  .art aside p{font-family:'Special Elite',monospace;font-size:13px;line-height:1.55;margin-bottom:0}
+
+  /* riso photo with overprint */
+  .photo{
+    margin:48px 0;position:relative;border:3px solid var(--ink);
+    transform:rotate(.5deg);
+    overflow:hidden;
+  }
+  .photo img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1) contrast(1.25) brightness(.85)}
+  .photo::after{content:'';position:absolute;inset:0;background:var(--pink);mix-blend-mode:multiply;opacity:.35;pointer-events:none}
+  .photo figcaption{position:relative;z-index:1}
+  .photo .badge{z-index:1}
+  .photo .badge{
+    position:absolute;top:14px;right:14px;background:var(--pink);color:var(--bone);
+    font-family:'Black Ops One',sans-serif;font-size:14px;padding:4px 10px;letter-spacing:.05em;transform:rotate(4deg);
+  }
+  .photo figcaption{
+    background:var(--steel);color:var(--ink);padding:8px 14px;border-top:3px solid var(--pink);
+    font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.05em;
+  }
+
+  /* zine spread */
+  .spread{
+    margin:48px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  }
+  @media (max-width:600px){.spread{grid-template-columns:1fr}}
+  .spread .panel{
+    padding:18px;border:3px solid var(--ink);background:var(--paper);
+    position:relative;font-family:'Special Elite',monospace;font-size:14px;line-height:1.55;
+  }
+  .spread .panel .stamp-num{
+    position:absolute;top:-14px;right:-12px;
+    font-family:'Black Ops One',sans-serif;font-size:48px;color:var(--pink);background:var(--paper);padding:0 8px;line-height:1;
+  }
+  .spread .panel h3{
+    font-family:'Black Ops One',sans-serif;font-size:20px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;letter-spacing:.03em;
+  }
+  .spread .panel .scribble{
+    margin-top:14px;font-family:'Caveat',cursive;font-size:22px;color:var(--pink);line-height:1.2;transform:rotate(-2deg);
+  }
+  .spread .panel.alt{background:var(--pink);color:var(--bone);transform:rotate(1deg)}
+  .spread .panel.alt h3{color:var(--bone)}
+  .spread .panel.alt .scribble{color:var(--paper)}
+
+  /* manifesto strip */
+  .strip{
+    margin:48px 0;padding:24px;background:var(--steel);color:var(--bone);
+    text-align:center;border-top:6px solid var(--pink);border-bottom:6px solid var(--pink);
+  }
+  .strip blockquote{
+    font-family:'Black Ops One',sans-serif;font-size:clamp(28px,4.4vw,52px);line-height:.98;text-transform:uppercase;letter-spacing:.02em;text-wrap:balance;max-width:22ch;margin:0 auto;
+  }
+  .strip blockquote em{color:var(--pink);font-style:normal}
+
+  /* outro */
+  .outro{
+    text-align:center;padding:32px 16px;border-top:2px dashed var(--ink);
+    font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.05em;
+  }
+  .outro b{font-family:'Black Ops One',sans-serif;font-size:18px;color:var(--ink);letter-spacing:.02em}
+  .outro a{color:var(--blue)}
+  .outro .pricelist{margin-top:14px;color:var(--ink)}
+  .outro .pricelist .p{font-family:'Special Elite',monospace;font-size:13px;line-height:1.5}
+
+  /* ---- material didático additions ---- */
+  html{scroll-behavior:smooth}
+  .sec-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:block}
+  .art.full{grid-template-columns:1fr}
+  .art ul{list-style:none;margin:0 0 1em;padding:0;font-family:'Special Elite',monospace;font-size:15px;line-height:1.7}
+  .art ul li{position:relative;padding:6px 0 6px 26px;border-bottom:1.5px dotted rgba(233,231,228,.25)}
+  .art ul li::before{content:'';position:absolute;left:4px;top:15px;width:9px;height:9px;background:var(--pink);transform:rotate(45deg)}
+  .art ul ul{margin:6px 0 0}
+  .art ul ul li{border-bottom:none;padding:3px 0 3px 22px}
+  .art ul ul li::before{width:7px;height:7px;top:12px;background:none;border:1.5px solid var(--blue)}
+  .art ul li.warn{background:rgba(193,18,31,.12);border:2px solid var(--pink);padding:10px 12px 10px 34px;margin:8px 0}
+  .art ul li.warn::before{left:12px;top:19px}
+  .lbl{color:var(--pink);font-weight:400}
+  .k{color:var(--bone);background:var(--steel);padding:0 4px}
+  .art h3.sub{font-family:'Black Ops One',sans-serif;font-weight:400;font-size:22px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);margin:28px 0 10px;display:flex;align-items:center;gap:12px}
+  .art h3.sub .n{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--pink);color:var(--bone);font-size:18px;transform:rotate(-3deg)}
+  .spread.three{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:700px){.spread.three{grid-template-columns:1fr}}
+  .spread .panel p{margin:0}
+  .spread .panel.mute{background:var(--steel)}
+  .photo.plain{background:#fff;transform:rotate(-.4deg)}
+  .photo.plain::after{display:none}
+  .photo.plain img{aspect-ratio:auto;object-fit:contain;filter:none;mix-blend-mode:normal}
+  .tbl-wrap{overflow-x:auto;border:3px solid var(--ink);margin:20px 0 24px}
+  table.tac{width:100%;border-collapse:collapse;font-family:'Special Elite',monospace;font-size:14px;line-height:1.45;min-width:620px}
+  table.tac th,table.tac td{padding:10px 12px;border:1.5px solid rgba(233,231,228,.22);text-align:left;vertical-align:top}
+  table.tac thead th{font-family:'Black Ops One',sans-serif;font-weight:400;letter-spacing:.04em;text-transform:uppercase;background:var(--steel);color:var(--bone);font-size:14px}
+  table.tac tbody th{font-family:'DM Mono',monospace;font-weight:500;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);background:rgba(255,255,255,.03)}
+  table.tac.grades thead th:nth-child(2){border-top:5px solid rgba(193,18,31,.35)}
+  table.tac.grades thead th:nth-child(3){border-top:5px solid rgba(193,18,31,.6)}
+  table.tac.grades thead th:nth-child(4){border-top:5px solid rgba(193,18,31,.85)}
+  table.tac.grades thead th:nth-child(5){border-top:5px solid var(--pink);background:var(--green)}
+  table.tac.grades tbody td:last-child{color:var(--bone);background:rgba(193,18,31,.12)}
+  .strip .formula{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  .strip blockquote{max-width:26ch}
+  .toc ol li a{text-decoration:none}
+  .toc ol li a:hover{color:var(--pink)}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <nav class="nav">
+    <a href="#topo">↑ topo</a>
+    <span><span class="x">STOP THE BLEED</span> · MATERIAL COMPLEMENTAR · NEP</span>
+  </nav>
+
+  <header class="cover" id="topo">
+    <div class="stamp">MATERIAL COMPLEMENTAR</div>
+    <h1>
+      <span class="l" data-t="STOP THE">STOP THE</span>
+      <span class="l" data-t="BLEED">BLEED</span>
+    </h1>
+    <div class="num">NEP</div>
+  </header>
+
+  <aside class="toc">
+    <h3>↘ Conteúdo</h3>
+    <ol>
+      <li><a href="#s1">Introdução e Segurança da Cena</a><b>01</b></li>
+      <li><a href="#s2">Identificação da Hemorragia Grave</a><b>02</b></li>
+      <li><a href="#s3">Fisiopatologia do Choque</a><b>03</b></li>
+      <li><a href="#s4">Grau de Choque (PHTLS 10ª Edição e ATLS 11ª Edição)</a><b>04</b></li>
+      <li><a href="#s5">Sinais e Sintomas</a><b>05</b></li>
+      <li><a href="#s6">Algoritmo de Ação (O ABC do Stop the Bleed)</a><b>06</b></li>
+      <li><a href="#s6b">Erros Comuns a Evitar (Boas Práticas PHTLS)</a><b>07</b></li>
+      <li><a href="#s7">Materiais e Insumos</a><b>08</b></li>
+    </ol>
+  </aside>
+
+  <!-- 1 -->
+  <section class="art" id="s1">
+    <div>
+      <h2>1. Introdução <span class="b">e</span> <span class="p">segurança</span> <span class="u">da cena</span></h2>
+      <p>A segurança é o primeiro passo absoluto em qualquer emergência. <strong>Você não pode ajudar um ferido se também se tornar uma vítima.</strong></p>
+      <ul>
+        <li><span class="lbl">Segurança do Socorrista:</span> Antes de tocar na vítima ou se aproximar, avalie a cena em busca de perigos (trânsito, fogo, atiradores ativos, eletricidade, destroços). Se o local não for seguro, não avance e aguarde ajuda profissional.</li>
+        <li><span class="lbl">Proteção Pessoal (EPI):</span> Sempre que possível, utilize luvas para evitar contato com patógenos transmitidos pelo sangue. Caso não tenha luvas, não deixe que isso o impeça de salvar uma vida; utilize panos limpos ou roupas como barreira e lave as mãos posteriormente.</li>
+        <li><span class="lbl">Acionamento do Serviço de Emergência Médica (EMS):</span> Alertar o SAMU (192) ou Bombeiros (193) insere você na cadeia de sobrevivência. Faça isso o mais rápido possível, pois a vítima precisará de cuidados médicos avançados e transporte rápido.</li>
+      </ul>
+    </div>
+    <aside>
+      <h4>↘ SAMU</h4>
+      <p style="font-family:'Black Ops One',sans-serif;font-size:44px;line-height:1;color:var(--ink);margin-bottom:12px">192</p>
+      <h4>↘ Bombeiros</h4>
+      <p style="font-family:'Black Ops One',sans-serif;font-size:44px;line-height:1;color:var(--ink)">193</p>
+    </aside>
+  </section>
+
+  <!-- 2 -->
+  <section class="art" id="s2">
+    <div>
+      <h2>2. Identificação <span class="b">da</span> <span class="p">hemorragia</span> <span class="u">grave</span></h2>
+      <p>No PHTLS, a letra <strong>"X"</strong> (do protocolo XABCDE) representa a hemorragia exsanguinante externa. O controle desse sangramento tem prioridade sobre a abertura de vias aéreas (A), pois a perda severa de sangue pode ser fatal em apenas 3 a 5 minutos.</p>
+      <ul>
+        <li><span class="lbl">Sinais visuais de sangramento que ameaça a vida:</span>
+          <ul>
+            <li>Sangue jorrando ou espirrando (pulsátil).</li>
+            <li>Formação rápida de uma poça de sangue no chão ao redor da vítima.</li>
+            <li>Roupas da vítima encharcadas de sangue.</li>
+            <li>Amputações parciais ou totais de membros.</li>
+          </ul>
+        </li>
+        <li><span class="lbl">Tipos de hemorragias:</span></li>
+      </ul>
+    </div>
+    <aside>
+      <h4>↘ XABCDE</h4>
+      <p style="font-family:'Black Ops One',sans-serif;font-size:96px;line-height:.9;color:var(--pink)">X</p>
+      <p>3 a 5 minutos</p>
+    </aside>
+  </section>
+
+  <section class="spread three">
+    <div class="panel alt">
+      <div class="stamp-num" style="color:var(--pink)">01</div>
+      <h3>≯ Arterial</h3>
+      <p>Ocorre quando o sangue provém de uma grande artéria, que transporta sangue com muita força e pressão a partir do coração. É caracterizado por um fluxo em jato (pulsátil), cor vermelho-vivo e rápida formação de grandes poças de sangue ou roupas completamente encharcadas.</p>
+    </div>
+    <div class="panel" style="background:var(--green);color:var(--bone)">
+      <div class="stamp-num">02</div>
+      <h3 style="color:var(--bone)">≯ Sangramento Venoso</h3>
+      <p>Sangue de cor vermelho-escuro que flui de forma contínua e com menor pressão. Embora seja mais lento que o arterial, a lesão de grandes veias pode ser igualmente letal e exige controle imediato.</p>
+    </div>
+    <div class="panel mute">
+      <div class="stamp-num" style="color:var(--blue)">03</div>
+      <h3>≯ Sangramento Capilar</h3>
+      <p>Escorre de forma lenta e superficial (exsudação), geralmente causado por abrasões. É facilmente controlado e raramente representa risco à vida.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="art full" id="s3">
+    <div>
+      <h2>3. Fisiopatologia <span class="b">do</span> <span class="p">choque</span></h2>
+      <p>O choque é um estado patológico onde ocorre um desequilíbrio entre a oferta e a demanda de oxigênio celular. Ele é definido como a perfusão (entrega de sangue) e oxigenação insuficientes em nível celular.</p>
+      <ul><li><span class="lbl">Processo Fisiológico:</span></li></ul>
+      <p>O corpo humano precisa de energia na forma de trifosfato de adenosina (ATP). Em condições normais, as células absorvem oxigênio e glicose para realizar o <span class="k">metabolismo aeróbico</span>, um processo altamente eficiente que produz 38 moléculas de ATP por molécula de glicose, gerando apenas água e dióxido de carbono como subprodutos.</p>
+      <p>Quando há hemorragia grave, a perda de glóbulos vermelhos reduz o fornecimento de oxigênio às células. Sem oxigênio, as células são forçadas a mudar para o <strong>metabolismo anaeróbico</strong>, que produz apenas 2 moléculas de ATP (uma queda dramática na energia) e gera ácido láctico (lactato) como subproduto. O acúmulo de ácido láctico causa acidose metabólica. Se não for revertida, a acidose deprime a contração do miocárdio, causa a morte celular e leva à falência múltipla de órgãos.</p>
+      <p>Para agravar o quadro, o sangramento e o choque acionam a <strong>Tríade Letal do Trauma</strong>:</p>
+    </div>
+  </section>
+
+  <section class="spread three">
+    <div class="panel">
+      <div class="stamp-num">A</div>
+      <h3>≯ Acidose</h3>
+      <p>Causada pelo metabolismo anaeróbico, causando diminuição da contração miocárdica.</p>
+    </div>
+    <div class="panel">
+      <div class="stamp-num">H</div>
+      <h3>≯ Hipotermia</h3>
+      <p>A perda de sangue diminui a capacidade do corpo de regular a temperatura, e a hipotermia prejudica drasticamente a cascata de coagulação.</p>
+    </div>
+    <div class="panel">
+      <div class="stamp-num">C</div>
+      <h3>≯ Coagulopatia</h3>
+      <p>A perda de fatores de coagulação pelo sangramento, aliada à acidose e à hipotermia, impede a formação de coágulos, piorando ainda mais a hemorragia.</p>
+    </div>
+  </section>
+
+  <figure class="photo plain">
+    <img src="assets/img/fluxograma-choque.jpeg" alt="Fluxograma do Choque Hemorrágico">
+    <div class="badge">FIG. 03</div>
+    <figcaption>Fluxograma do Choque Hemorrágico.</figcaption>
+  </figure>
+
+  <!-- 4 -->
+  <section class="art full" id="s4">
+    <div>
+      <h2>4. Grau <span class="b">de</span> <span class="p">choque</span></h2>
+      <span class="sec-tag">PHTLS 10ª Edição e ATLS 11ª Edição</span>
+      <p>A classificação do choque hemorrágico para um adulto médio (com cerca de 5 litros de sangue) é dividida em 4 classes (PHTLS 10ª edição):</p>
+      <div class="tbl-wrap">
+        <table class="tac grades">
+          <thead><tr><th>Parâmetros Clínicos</th><th>Classe I</th><th>Classe II</th><th>Classe III</th><th>Classe IV</th></tr></thead>
+          <tbody>
+            <tr><th>Perda de Sangue (mL)</th><td>&lt; 750 mL</td><td>750 - 1.500 mL</td><td>1.500 - 2.000 mL</td><td>&gt; 2.000 mL</td></tr>
+            <tr><th>Perda de Sangue (%)</th><td>&lt; 15%</td><td>15% - 30%</td><td>30% - 40%</td><td>&gt; 40%</td></tr>
+            <tr><th>Frequência de Pulso</th><td>Normal</td><td>Aumentada</td><td>Muito Aumentada</td><td>Severamente Aumentada</td></tr>
+            <tr><th>Pressão Arterial</th><td>Normal</td><td>Normal</td><td>Diminuída</td><td>Muito Diminuída</td></tr>
+            <tr><th>Pressão de Pulso</th><td>Normal</td><td>Diminuída</td><td>Diminuída</td><td>Diminuída</td></tr>
+            <tr><th>Estado Mental</th><td>Levemente Ansioso</td><td>Ansioso</td><td>Ansioso / Confuso</td><td>Confuso / Letárgico</td></tr>
+            <tr><th>Excesso de Base</th><td>0 a -2</td><td>-2 a -6</td><td>-6 a -10</td><td>Mais que -10</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Além da resposta aos fluidos, atualmente o ATLS 11ª edição simplifica o choque hemorrágico ensinando a cascata em 3 estágios fisiológicos fáceis de identificar no pré-hospitalar, agrupando os 4 graus antigos:</p>
+      <ul>
+        <li><span class="lbl">Choque Leve (Classes I e II):</span> Sinais vitais compensados, frequência cardíaca até 100 bpm.</li>
+        <li><span class="lbl">Choque Moderado (Classe III):</span> A frequência cardíaca se mantém entre 100 e 120 bpm, pode haver início da descompensação dos demais sinais vitais.</li>
+        <li><span class="lbl">Choque Grave (Classe IV):</span> Dano celular profundo, acidose metabólica grave (marcada por um Déficit de Base &gt; -10), PA sistólica &lt; 90 mmHg e frequência cardíaca &gt; 120 bpm.</li>
+      </ul>
+      <p><strong>O Índice de Choque (Shock Index - SI):</strong> Uma métrica rápida e crucial para equipes de APH identificarem o choque oculto antes da queda da pressão arterial (que ocorre tardiamente no trauma).</p>
+    </div>
+  </section>
+
+  <section class="strip">
+    <div class="formula">Cálculo:</div>
+    <blockquote>Frequência Cardíaca (FC) <em>÷</em> Pressão Arterial Sistólica (PAS).</blockquote>
+  </section>
+
+  <section class="art full">
+    <div>
+      <ul>
+        <li><span class="lbl">Valores de Referência:</span>
+          <ul>
+            <li>0.5 a 0.7: Normal.</li>
+            <li>SI ≥ 0.8: Risco elevado. Paciente necessita de avaliação cirúrgica urgente e possível protocolo de transfusão maciça.</li>
+            <li>SI ≥ 1.0 (Regra Prática): Sempre que a Frequência Cardíaca for numericamente maior que a Pressão Arterial Sistólica (Ex: FC 115 e PAS 100), o paciente está em choque grave, mesmo que a PAS ainda pareça "aceitável". Prioridade máxima de transporte.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="art full" id="s5">
+    <div>
+      <h2>5. Sinais <span class="b">e</span> <span class="p">sintomas</span></h2>
+      <p>O reconhecimento clínico baseia-se na identificação da resposta compensatória do corpo (ativação do sistema nervoso simpático e liberação de catecolaminas).</p>
+      <ul>
+        <li><span class="lbl">Sinais Cardiovasculares:</span> Taquicardia (aumento da frequência cardíaca), estreitamento da pressão de pulso e, tardiamente, hipotensão (queda da pressão arterial sistólica). Um Índice de Choque (Frequência Cardíaca dividida pela Pressão Arterial Sistólica) superior a 0,9 é um forte indicador de sangramento crítico.</li>
+        <li><span class="lbl">Sinais Tegumentares:</span> Pele fria, pálida, cianótica e sudoreica devido ao desvio do sangue das extremidades para proteger órgãos vitais (coração e cérebro).</li>
+        <li><span class="lbl">Sinais Neurológicos:</span> Progressão de leve ansiedade e medo para confusão profunda e letargia à medida que a hipoperfusão cerebral piora.</li>
+        <li><span class="lbl">Sinais Renais:</span> O débito urinário cai à medida que os rins tentam reter líquidos; na Classe II cai para 20-30 mL/hora e na Classe III para 5-15 mL/hora.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="art full" id="s6">
+    <div>
+      <h2>6. Algoritmo <span class="b">de</span> <span class="p">ação</span></h2>
+      <span class="sec-tag">O ABC do Stop the Bleed</span>
+      <p>Alinhado ao "X" do PHTLS, a intervenção nos primeiros 60 segundos é o que salva a vida. Aplique o algoritmo <strong>ABC</strong>:</p>
+    </div>
+  </section>
+
+  <section class="spread three">
+    <div class="panel">
+      <div class="stamp-num">A</div>
+      <h3>≯ Alert - Alerte</h3>
+      <p>Ligue para o 192 (SAMU) ou 193 (Bombeiros).</p>
+    </div>
+    <div class="panel">
+      <div class="stamp-num">B</div>
+      <h3>≯ Bleeding - Busque o Sangramento</h3>
+      <p>Localize a origem exata do sangramento grave, cortando roupas se necessário.</p>
+    </div>
+    <div class="panel alt">
+      <div class="stamp-num" style="color:var(--pink)">C</div>
+      <h3>≯ Compress - Comprima</h3>
+      <p>Aplique uma das três técnicas abaixo, dependendo do local e da gravidade da lesão.</p>
+    </div>
+  </section>
+
+  <section class="art full">
+    <div>
+      <h3 class="sub"><span class="n">1</span> Pressão Direta</h3>
+      <p>Deve ser o primeiro passo. Consiste em aplicar pressão firme e contínua diretamente sobre a ferida usando um pano limpo ou gaze. É crucial manter a pressão firme até a chegada da ajuda ou até a transição para outra técnica, e <strong>nunca</strong> levantar o curativo para verificar se o sangramento parou. Esta é a principal técnica para áreas onde torniquetes não se aplicam (tórax, abdome, pescoço, couro cabeludo, virilha.</p>
+
+      <h3 class="sub"><span class="n">2</span> Preenchimento de Ferida (Wound Packing)</h3>
+      <p>Utilizado quando a pressão direta externa não é suficiente ou em feridas profundas e juncionais. Envolve introduzir gaze ou pano limpo diretamente e profundamente na cavidade da ferida, o que cria pressão de dentro para fora. Após preencher a ferida, é obrigatório aplicar pressão direta firme sobre o material introduzido.</p>
+
+      <h3 class="sub"><span class="n">3</span> Aplicação do Torniquete</h3>
+      <p>Utilizado para sangramentos graves e com risco de vida em extremidades (braços e pernas) quando a pressão direta falha ou é impraticável.</p>
+      <ul>
+        <li>Coloque o torniquete <span class="lbl">5 a 7 centímetros (2 a 3 polegadas) acima da ferida.</span></li>
+        <li>Não coloque diretamente sobre articulações (nunca sobre cotovelo ou joelho).</li>
+        <li>Puxe a fita com força até que não sobre folga (não deve ser possível colocar um dedo entre a fita e a pele).</li>
+        <li>Gire a haste (molinete) até que o sangramento pare completamente, e não seja possível sentir o pulso distal.</li>
+        <li>Trave a haste no clipe e anote o horário da aplicação na etiqueta apropriada.</li>
+        <li class="warn"><span class="lbl">Atenção:</span> Se o sangramento não parar com o primeiro, aplique um segundo torniquete acima do primeiro.</li>
+        <li><span class="lbl">Nota sobre Dor:</span> Apertar corretamente o torniquete causará dor severa na vítima; isso é normal e necessário. Converse e tranquilize a vítima.</li>
+        <li><span class="lbl">Registro:</span> Anote o horário exato da aplicação na fita branca do torniquete.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 erros -->
+  <section class="art full" id="s6b">
+    <div>
+      <h2>7. Erros <span class="p">comuns</span> <span class="u">a evitar</span></h2>
+      <span class="sec-tag">Boas Práticas PHTLS</span>
+      <ul>
+        <li><span class="lbl">Torniquete Frouxo:</span> O maior erro é não puxar a fita de tração adequadamente antes de girar a haste. Se houver folga, o molinete não terá força para garrotear a artéria.</li>
+        <li><span class="lbl">Tirar para "ver se parou":</span> Nunca afrouxe ou remova um torniquete no campo. Apenas um médico no hospital deve retirá-lo, sob pena de a vítima sangrar até a morte.</li>
+        <li><span class="lbl">Aplicação sobre Articulações:</span> Nunca coloque o torniquete sobre o cotovelo ou joelho, pois a estrutura óssea impede o esmagamento dos vasos. Se a ferida for logo abaixo, posicione o torniquete acima da articulação.</li>
+        <li><span class="lbl">Subestimar Feridas Juncionais:</span> O torniquete não funciona em tronco, virilha e axila. Tentar aplicá-lo nessas regiões é ineficaz; use o preenchimento de ferida (packing) e pressão direta.</li>
+        <li><span class="lbl">Não usar um segundo torniquete quando necessário:</span> Se um torniquete bem apertado não estancar o fluxo de sangue (comum em coxas grossas), aplique um segundo torniquete imediatamente acima (mais próximo do tronco) do primeiro.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="art full" id="s7">
+    <div>
+      <h2>8. Materiais <span class="b">e</span> <span class="p">insumos</span></h2>
+      <p>Os equipamentos modernos focam no controle mecânico ou químico do sangramento. Procure dispositivos certificados por órgãos como o Comitê de Trauma do ACS ou pelo DoD. O uso de equipamentos improvisados não é recomendado, pois não há garantia de eficácia e podem causar mais lesões.</p>
+      <div class="tbl-wrap">
+        <table class="tac">
+          <thead><tr><th>Material / Equipamento</th><th>Função e Ação</th><th>Modo de Uso</th></tr></thead>
+          <tbody>
+            <tr><th>Kits de Controle de Sangramento (Bleeding Control Kits)</th><td>Oferecem os recursos essenciais em um pacote único para socorristas. Contêm luvas de proteção, materiais para curativo e preenchimento, e torniquetes aprovados.</td><td>Disponíveis em modelos individuais ou fixados em paredes (parecidos com gabinetes de DEA) em locais públicos.</td></tr>
+            <tr><th>Gazes (Simples ou Hemostáticas)</th><td>Atuam absorvendo sangue e criando volume no interior da ferida para aplicar pressão mecânica nos vasos rompidos. As versões hemostáticas contêm agentes que aceleram quimicamente a cascata de coagulação.</td><td>Inserir a gaze progressivamente na cavidade do ferimento até preenchê-lo por completo (wound packing). Finalizar exercendo pressão direta sobre o volume de gaze.</td></tr>
+            <tr><th>Torniquetes Comerciais Aprovados (ex: CAT, SOFTT-W)</th><td>Interrompem completamente o fluxo sanguíneo arterial e venoso ao comprimir os vasos sanguíneos contra o osso da extremidade.</td><td>Aplicar de 5 a 7 cm acima da lesão, passar a fita pela fivela, puxar firmemente para eliminar folgas e girar o molinete até o controle do sangramento. <span class="lbl">Nota:</span> Torniquetes comerciais apresentam cores como preto, laranja e vermelho; modelos azuis são destinados estritamente a treinamento e não devem ser usados em emergências reais.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="outro">
+    <b>STOP THE BLEED</b><br>
+    Material Complementar · NEP<br><br>
+    <a href="#topo">↑ voltar ao topo</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
