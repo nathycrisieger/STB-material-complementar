@@ -221,6 +221,322 @@
   .strip blockquote{max-width:26ch}
   .toc ol li a{text-decoration:none}
   .toc ol li a:hover{color:var(--pink)}
+
+/* ===== Ajustes responsivos ===== */
+img, video, iframe {
+  max-width: 100%;
+}
+
+.page {
+  width: 100%;
+  min-width: 0;
+}
+
+.nav {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav > span {
+  min-width: 0;
+  text-align: right;
+}
+
+.cover,
+.toc,
+.art,
+.spread,
+.strip,
+.photo,
+.outro {
+  min-width: 0;
+}
+
+.cover h1 {
+  overflow-wrap: anywhere;
+}
+
+.art > div,
+.art > aside,
+.spread > .panel {
+  min-width: 0;
+}
+
+.art p,
+.art li,
+.spread .panel,
+.toc a {
+  overflow-wrap: anywhere;
+}
+
+.tbl-wrap {
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 18px;
+  }
+
+  .nav {
+    align-items: flex-start;
+    font-size: 10px;
+  }
+
+  .nav > span {
+    flex: 1 1 100%;
+    text-align: left;
+  }
+
+  .cover {
+    padding: 22px 8px 36px;
+  }
+
+  .cover::before {
+    inset: 6px;
+  }
+
+  .cover h1 {
+    font-size: clamp(42px, 13vw, 88px);
+    line-height: 1;
+  }
+
+  .cover h1 .l::before {
+    transform: translate(-3px, 2px);
+  }
+
+  .cover h1 .l::after {
+    transform: translate(3px, -2px);
+  }
+
+  .cover .num {
+    font-size: clamp(38px, 10vw, 56px);
+  }
+
+  .toc {
+    margin: 32px 0;
+    padding: 18px;
+    transform: none;
+  }
+
+  .toc ol {
+    font-size: 14px;
+  }
+
+  .toc ol li {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .toc ol li b {
+    flex: 0 0 auto;
+  }
+
+  .art {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px;
+    margin: 36px 0;
+  }
+
+  .art h2 {
+    font-size: clamp(27px, 7vw, 36px);
+    line-height: 1.05;
+  }
+
+  .art aside {
+    max-width: 100%;
+    transform: none;
+  }
+
+  .spread,
+  .spread.three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 36px 0;
+  }
+
+  .spread .panel {
+    padding: 16px;
+  }
+
+  .spread .panel .stamp-num {
+    font-size: 38px;
+    right: -8px;
+  }
+
+  .strip {
+    margin: 36px 0;
+    padding: 20px 14px;
+  }
+
+  .photo {
+    margin: 36px 0;
+  }
+
+  .photo .badge {
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+  }
+
+  table.tac {
+    font-size: 13px;
+  }
+
+  table.tac th,
+  table.tac td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-bottom: 32px;
+    font-size: 14px;
+  }
+
+  .page {
+    padding: 12px;
+  }
+
+  .nav {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+  }
+
+  .cover {
+    padding: 18px 6px 30px;
+    border-bottom-width: 4px;
+  }
+
+  .cover .stamp {
+    max-width: 90%;
+    padding: 5px 10px;
+    font-size: 11px;
+    margin-bottom: 18px;
+  }
+
+  .cover h1 {
+    font-size: clamp(36px, 12.5vw, 60px);
+    letter-spacing: 0;
+  }
+
+  .cover .deck {
+    font-size: 13px;
+    padding: 0 8px;
+  }
+
+  .cover .price {
+    font-size: 19px;
+    padding: 5px 12px;
+  }
+
+  .toc {
+    padding: 14px;
+    border-width: 2px;
+  }
+
+  .toc h3 {
+    font-size: 21px;
+  }
+
+  .toc ol {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .toc ol li {
+    padding: 8px 0;
+  }
+
+  .art {
+    margin: 30px 0;
+  }
+
+  .art h2 {
+    font-size: clamp(25px, 8vw, 32px);
+  }
+
+  .art p,
+  .art ul {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .art h3.sub {
+    font-size: 19px;
+    gap: 8px;
+  }
+
+  .art h3.sub .n {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    font-size: 16px;
+  }
+
+  .spread,
+  .spread.three {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin: 30px 0;
+  }
+
+  .spread .panel {
+    padding: 18px 16px;
+    font-size: 13px;
+  }
+
+  .spread .panel.alt {
+    transform: none;
+  }
+
+  .spread .panel .stamp-num {
+    font-size: 34px;
+  }
+
+  .strip blockquote {
+    font-size: clamp(25px, 8vw, 36px);
+  }
+
+  .strip .formula {
+    font-size: 10px;
+  }
+
+  .photo {
+    margin: 30px 0;
+    transform: none;
+  }
+
+  .photo figcaption {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .outro {
+    padding: 26px 10px;
+    font-size: 10px;
+  }
+
+  /* As tabelas permanecem roláveis sem alargar a página. */
+  .tbl-wrap {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  table.tac {
+    min-width: 600px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 </style>
 </head>
 <body>
